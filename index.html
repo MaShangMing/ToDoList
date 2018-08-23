@@ -5,8 +5,24 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>todolist</title>
   </head>
+  <style>
+    ul li.done{
+      text-decoration: line-through;
+      color: red;
+    }
+  </style>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <div>
+        <input type="text" @keyup.enter="handleClick" v-model="mytodo">
+        <button @click="handleClick">添加</button>
+        <button @click="clean">清空</button>
+      </div>
+      <ul>
+        <li :class="{'done' : todo.done}" @click="toggle(index)" v-for="(todo,index) in todoList">{{index+1}} : {{todo.text}}</li>
+      </ul>
+      <p>{{remain}}/{{todoList.length}}</p>
+    </div>
     <!-- built files will be auto injected -->
   </body>
 </html>
